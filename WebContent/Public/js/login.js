@@ -5,7 +5,7 @@ Ext.onReady(function() {
 				model : 'User',
 				proxy : {
 					type : 'ajax',
-					url : 'getUserNames.do'
+					url : '../user/getNames.do'
 				}
 			});
 
@@ -17,7 +17,7 @@ Ext.onReady(function() {
 		bodyPadding : 5,
 		border : '1px solid gray',
 		width : 298,
-		url : 'validuser.do',
+		url : 'valid.do',
 		layout : 'anchor',
 		defaults : {
 			anchor : '100%'
@@ -57,8 +57,8 @@ Ext.onReady(function() {
 										success : function(form, action) {
 
 											if (true == action.result) {
-												window.location.href = "main.do?name="
-														+ form.name;
+												window.location.href = "../main/index.do";
+														
 											}
 										},
 										failure : function(form, action) {

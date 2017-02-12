@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import enixlin.jrrc.pojo.User;
 import enixlin.jrrc.pojo.UserCustomVo;
@@ -22,6 +23,7 @@ import enixlin.jrrc.service.UserService;
 *
 */
 @Controller
+@RequestMapping("login")
 public class LoginController {
 	
 	
@@ -38,16 +40,18 @@ public class LoginController {
 	* @return String    返回类型
 	* @throws
 	 */
-	@RequestMapping("login.do")
-	public String login() throws Exception{
-		return "login";
+	@RequestMapping("index.do")
+	public ModelAndView login() throws Exception{
+		ModelAndView modelAndView=new ModelAndView();
+		modelAndView.setViewName("login");
+		return modelAndView;
 	}
 	
 	
 	
 	
 	
-	@RequestMapping("validuser.do")
+	@RequestMapping("valid.do")
 	public @ResponseBody boolean validUser(@RequestParam String name,@RequestParam String password) throws Exception{
 		UserCustomVo userCustomVo=new UserCustomVo();
 		User user=new User();

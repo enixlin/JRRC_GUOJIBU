@@ -26,12 +26,13 @@ import enixlin.jrrc.service.UserService;
 */
 
 @Controller
+@RequestMapping("main")
 public class MainController {
 	
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping("main.do")
+	@RequestMapping("index.do")
 	public String show(){
 		
 		return "main";

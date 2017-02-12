@@ -7,13 +7,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!--  引入extjs库-->
 <link rel="stylesheet" type="text/css"
-	href="Public/Extjs/theme-classic/resources/theme-classic-all.css" />
-<script type="text/javascript" src="Public/Extjs/ext.js"></script>
-<script type="text/javascript" src="Public/Extjs/ext-all-debug.js"></script>
+	href="../Public/Extjs/theme-classic/resources/theme-classic-all.css" />
+<script type="text/javascript" src="../Public/Extjs/ext.js"></script>
+<script type="text/javascript" src="../Public/Extjs/ext-all-debug.js"></script>
 <!-- 加载EXTjs中文配置文件 -->
-<script type="text/javascript" src="Public/Extjs/locale/locale-zh_CN-debug.js"></script>
+<script type="text/javascript" src="../Public/Extjs/locale/locale-zh_CN-debug.js"></script>
 
-<script type="text/javascript" src="Public/js/main.js"></script>
+<script type="text/javascript" src="../Public/js/main.js"></script>
 <title>欢迎使用国际业务信息查询系统</title>
 <style>
 #container {

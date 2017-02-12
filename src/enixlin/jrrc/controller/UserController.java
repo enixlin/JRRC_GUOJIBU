@@ -16,6 +16,7 @@ import enixlin.jrrc.service.UserService;
 import enixlin.jrrc.service.impl.PowerServiceImpl;
 
 @Controller
+@RequestMapping("user")
 public class UserController {
 	
 	@Autowired
@@ -36,7 +37,7 @@ public class UserController {
 	* @return ModelAndView    返回类型  ArrayList<User> userList
 	* @throws
 	 */
-	@RequestMapping("userlist.do")
+	@RequestMapping("list.do")
 	public ModelAndView userlist(
 			UserCustomVo userCustomVo) throws Exception {
 		
@@ -53,14 +54,14 @@ public class UserController {
 	}
 	
 	
-	@RequestMapping("modifyuser.do")
+	@RequestMapping("modify.do")
 	public void modifyUser(UserCustomVo userCustomVo) throws Exception{
 		
 		userService.modifyUser(userCustomVo);
 	}
 	
 	
-	@RequestMapping("getUserNames.do")
+	@RequestMapping("getNames.do")
 	public @ResponseBody ArrayList getUserNames() throws Exception{
 		UserCustomVo userCustomVo=new UserCustomVo();
 		ArrayList userlist=userService.getUserById(userCustomVo);
@@ -75,7 +76,7 @@ public class UserController {
 	
 	
 	
-	@RequestMapping("getUserPowers.do")
+	@RequestMapping("getPowers.do")
 	public @ResponseBody ArrayList<Power> getUserPowers() throws Exception{
 		User user =new User();
 		user.setId(95);

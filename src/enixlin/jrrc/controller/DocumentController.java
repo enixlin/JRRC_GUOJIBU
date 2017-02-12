@@ -20,5 +20,6 @@ public class DocumentController {
 	public void show(){}
 	public void ff(){}
 	public void fff(){}
+	public void gdfd(){}
 
 }

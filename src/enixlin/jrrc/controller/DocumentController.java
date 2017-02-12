@@ -16,5 +16,7 @@ package enixlin.jrrc.controller;
 *
 */
 public class DocumentController {
+	
+	public void show(){}
 
 }

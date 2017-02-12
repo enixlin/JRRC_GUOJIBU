@@ -21,7 +21,6 @@ public class DocumentController {
 	public void ff(){}
 	public void fff(){}
 	public void gdfd(){}
-
 	public void fdfffff(){}
-
+private int a;
 }

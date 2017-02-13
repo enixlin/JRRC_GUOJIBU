@@ -10,8 +10,11 @@ package enixlin.jrrc.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 import enixlin.jrrc.pojo.User;
 import enixlin.jrrc.pojo.UserCustomVo;
@@ -27,15 +30,19 @@ import enixlin.jrrc.service.UserService;
 
 @Controller
 @RequestMapping("main")
+@SessionAttributes({"User","Y"})
 public class MainController {
 	
 	@Autowired
 	private UserService userService;
 	
 	@RequestMapping("index.do")
-	public String show(){
+	public ModelAndView show(ModelMap modelMap){
+		ModelAndView modelAndView=new ModelAndView();
+		modelAndView.addObject("UserName", modelMap.get("User"));
+		modelAndView.setViewName("main");
 		
-		return "main";
+		return modelAndView;
 	}
 	
 	@RequestMapping("getuserinfo.do")

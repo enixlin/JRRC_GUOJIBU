@@ -25,6 +25,7 @@
 </style>
 </head>
 <body>
+${UserID} ${UserName}
 	<div id="container"></div>
 	<div id="add"></div>
 

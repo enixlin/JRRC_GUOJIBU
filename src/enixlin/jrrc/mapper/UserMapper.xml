@@ -5,47 +5,86 @@
 
 <mapper namespace="enixlin.jrrc.mapper.UserMapper">
 
-<sql id="where_select_byId">
-	<if test="userList!=null">
-	<foreach collection="userList" item="list" separator=" or ">
-	id=#{list.id}
-	</foreach>
-	</if>
-</sql>
+	<!-- //单个操作函数 public int addUser(UserQueryVo userQueryVo) throws Exception; 
+		public int deleteUser(UserQueryVo userQueryVo) throws Exception; public int 
+		modifyUser(UserQueryVo userQueryVo) throws Exception; public User getUser(UserQueryVo 
+		userQueryVo) throws Exception; public boolean validUser(UserQueryVo userQueryVo) 
+		throws Exception; //批量操作函数 public int addUsers(UserQueryVo userQueryVo) throws 
+		Exception; public int deleteUsers(UserQueryVo userQueryVo) throws Exception; 
+		public int modifyUsers(UserQueryVo userQueryVo) throws Exception; public 
+		ArrayList<User> getUsers(UserQueryVo userQueryVo) throws Exception; -->
 
-<sql id="where_select_byName">
-	<if test="userList!=null">
-	<foreach collection="userList" item="list" separator=" or ">
-	name like "%${list.name}%"
-	</foreach>
-	</if>
-</sql>
+	<sql id="select_where">
+		<if test="userList!=null">
+			<foreach collection="userList" item="user" index="index"
+				open="" close="" separator="or">
+				id=#{user.id}
+			</foreach>
+		</if>
 
-	<!--按用户编号取得用户信息 可以提供多个编号 -->
-	<select id="getUserById" parameterType="UserCustomVo"
-		resultType="User">
+	</sql>
+
+
+
+	<!--添加单个用户 -->
+
+	<insert id="addUser" parameterType="UserQueryVo">
+		insert into jrrc_user
+		(name,password,status)
+		value(#{user.name},#{user.password},${user.status})
+
+	</insert>
+
+
+	<!--添加多个用户 -->
+	<insert id="addUsers" parameterType="UserQueryVo">
+		<foreach collection="userList" item="user" index="index" open=""
+			close="" separator=";">
+			insert into jrrc_user
+			(name,password,status)
+			value(#{user.name},#{user.password},${user.status})
+		</foreach>
+	</insert>
+
+
+	<!-- 删除单个用户 -->
+	<delete id="deleteUser" parameterType="UserQueryVo">
+		delete from jrrc_user
+		where id=${user.id}
+	</delete>
+
+
+	<!-- 删除多个用户 -->
+	<delete id="deleteUsers" parameterType="UserQueryVo">
+		<foreach collection="userList" item="user" index="index" open=""
+			close="" separator=";">
+			delete from jrrc_user where id=${user.id}
+		</foreach>
+	</delete>
+
+	<!--取得多个用户 -->
+	<select id="getUsers" parameterType="UserQueryVo" resultType="User">
 		select * from jrrc_user
-		<where >
-		<include refid="where_select_byId"></include>
-		</where>
-	
-	</select>
-	<!--按名字取用户信息，可以提供多个名字  -->
-	<select id="getUserByName" parameterType="UserCustomVo"
-		resultType="User">
-		select * from jrrc_user
-		<where >
-		<include refid="where_select_byName"></include>
+		<where>
+			<include refid="select_where"></include>
 		</where>
 	</select>
-	
-	<update id="modifyUser" parameterType="UserCustomVo" >
-	<foreach collection="UserList" item="user"  index="index" open="" close=""  separator=";" >
-			update jrrc_user set name='${user.name}',password='${user.password}',status=${user.status} where id=${user.id}
-	</foreach>
-	</update>
-	
-	
-	
+
+
+	<!-- <sql id="where_select_byId"> <if test="userList!=null"> <foreach collection="userList" 
+		item="list" separator=" or "> id=#{list.id} </foreach> </if> </sql> <sql 
+		id="where_select_byName"> <if test="userList!=null"> <foreach collection="userList" 
+		item="list" separator=" or "> name like "%${list.name}%" </foreach> </if> 
+		</sql> 按用户编号取得用户信息 可以提供多个编号 <select id="getUserById" parameterType="UserCustomVo" 
+		resultType="User"> select * from jrrc_user <where > <include refid="where_select_byId"></include> 
+		</where> </select> 按名字取用户信息，可以提供多个名字 <select id="getUserByName" parameterType="UserCustomVo" 
+		resultType="User"> select * from jrrc_user <where > <include refid="where_select_byName"></include> 
+		</where> </select> <update id="modifyUser" parameterType="UserCustomVo" > 
+		<foreach collection="UserList" item="user" index="index" open="" close="" 
+		separator=";" > update jrrc_user set name='${user.name}',password='${user.password}',status=${user.status} 
+		where id=${user.id} </foreach> </update> -->
+
+
+
 
 </mapper>

@@ -37,5 +37,14 @@ private AuthorService authorservice;
 		role.setStatus(1);
 		authorservice.AddRole(role);		
 	}
+	
+	@RequestMapping("deleterole.do")
+	public void deleteRole() throws Exception{
+		Role role=new Role();
+		role.setId(188);
+		role.setRoleName("test");
+		role.setStatus(1);
+		authorservice.DeleteRole(role);		
+	}
 
 }

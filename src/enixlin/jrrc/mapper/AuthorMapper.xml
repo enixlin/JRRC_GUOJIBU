@@ -3,13 +3,22 @@
 
 <mapper namespace="enixlin.jrrc.mapper.AuthorMapper">
 
-	
-<insert id="AddRole">
-insert into jrrc_role value(${Id},${roleName},${status})
 
-</insert>
-	
-	
-	
+	<!-- 插入角色 -->
+	<insert id="AddRole">
+		insert into jrrc_role
+		value(${Id},'${roleName}',${status})
+	</insert>
+
+	<!-- 删除角色 -->
+	<delete id="DeleteRole" parameterType="Role">
+		delete from jrrc_role
+		where id=${Id}
+	</delete>
+
+	<!-- 修改角色 -->
+	<update id="ModifyRole" parameterType="Role">
+	update jrrc_role
+	</update>
 
 </mapper>

@@ -2,83 +2,92 @@ package enixlin.jrrc.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
-import enixlin.jrrc.pojo.Power;
 import enixlin.jrrc.pojo.User;
-import enixlin.jrrc.pojo.UserCustomVo;
+import enixlin.jrrc.pojo.UserQueryVo;
 import enixlin.jrrc.service.UserService;
-import enixlin.jrrc.service.impl.PowerServiceImpl;
 
 @Controller
 @RequestMapping("user")
 public class UserController {
-	
+
 	@Autowired
 	private UserService userService;
-	
 
-	
-
-	
-
-
-
-	/**
-	 * 
-	* @Title: userlist
-	* @Description: 显示所有的用户
-	* @param @return
-	* @param @throws Exception    参数
-	* @return ModelAndView    返回类型  ArrayList<User> userList
-	* @throws
-	 */
-	@RequestMapping("list.do")
-	public ModelAndView userlist(
-			UserCustomVo userCustomVo) throws Exception {
-		
-		ArrayList<User> UserList=userService.getUserByName(userCustomVo);
-		userCustomVo.setUserList(UserList);
-		ModelAndView modelAndView =new ModelAndView();
-		
-		modelAndView.setViewName("showuserlist");
-		modelAndView.addObject("UserList", UserList);
-		modelAndView.addObject("userCustomVo", userCustomVo);
-		
-		return modelAndView;
-		
+	@RequestMapping("/add.do")
+	public @ResponseBody int addUser() throws Exception {
+		UserQueryVo userQueryVo = new UserQueryVo();
+		User user = new User();
+		user.setName("ppp");
+		user.setPassword("1234");
+		user.setStatus(1);
+		userQueryVo.setUser(user);
+		int insertCount = userService.addUser(userQueryVo);
+		return insertCount;
 	}
-	
-	
-	@RequestMapping("modify.do")
-	public void modifyUser(UserCustomVo userCustomVo) throws Exception{
-		
-		userService.modifyUser(userCustomVo);
-	}
-	
-	
-	@RequestMapping("getNames.do")
-	public @ResponseBody ArrayList getUserNames() throws Exception{
-		UserCustomVo userCustomVo=new UserCustomVo();
-		ArrayList userlist=userService.getUserById(userCustomVo);
-		for(int n=0;n<userlist.size();n++){
-			User user=(User) userlist.get(n);
-			user.setPassword("");
-			user.setStatus(0);
+
+	@RequestMapping("/adds.do")
+	public @ResponseBody int addUsers() throws Exception {
+		UserQueryVo userQueryVo = new UserQueryVo();
+		ArrayList<User> ulist = new ArrayList();
+		for (int n = 0; n < 5; n++) {
+
+			User user = new User();
+			user.setName("ppp" + n);
+			user.setPassword("1234" + n);
+			user.setStatus(1);
+			ulist.add(user);
 		}
-		
-		return userlist;
+		userQueryVo.setUserList(ulist);
+		int insertCount = userService.addUsers(userQueryVo);
+		return insertCount;
+	}
+
+	@RequestMapping("/deletes.do")
+	public @ResponseBody int deleteUsers() throws Exception {
+		UserQueryVo userQueryVo = new UserQueryVo();
+		ArrayList<User> ulist = new ArrayList();
+		for (int n = 0; n < 5; n++) {
+
+			User user = new User();
+			user.setId(155 + n);
+			ulist.add(user);
+		}
+		userQueryVo.setUserList(ulist);
+		int insertCount = userService.deleteUsers(userQueryVo);
+		return insertCount;
+	}
+
+	@RequestMapping("/delete.do")
+	public @ResponseBody int deleteUser() throws Exception {
+		UserQueryVo userQueryVo = new UserQueryVo();
+
+		User user = new User();
+		user.setId(156);
+
+		userQueryVo.setUser(user);
+		int insertCount = userService.deleteUser(userQueryVo);
+		return insertCount;
 	}
 	
+	@RequestMapping("/valid.do")
+	public @ResponseBody boolean validUser(@RequestParam int id,@RequestParam String password) throws Exception{
+		UserQueryVo userQueryVo=new UserQueryVo();
+		User user=new User();
 	
-	
-
-	
-	
+		user.setId(id);;
+		user.setPassword(password);
+		userQueryVo.setUser(user);
+		boolean result=userService.validUser(userQueryVo);
+		
+		return result;
+	}
 
 }

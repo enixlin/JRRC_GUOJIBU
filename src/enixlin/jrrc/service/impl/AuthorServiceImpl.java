@@ -30,11 +30,32 @@ public class AuthorServiceImpl implements AuthorService {
 	@Autowired
 	private AuthorMapper authormapper;
 	
-	
+	@Override
 	public int AddRole(Role role) throws Exception  {
 	int insertCount=	authormapper.AddRole(role);
 		return insertCount;
 		
+	}
+
+
+	@Override
+	public int DeleteRole(Role role) throws Exception {
+		int deleteCount=authormapper.DeleteRole(role);
+		return deleteCount;
+	}
+
+
+	@Override
+	public int ModifyRole(Role role) throws Exception {
+		int modifyCount=authormapper.ModifyRole(role);
+		return modifyCount;
+	}
+
+
+	@Override
+	public ArrayList<Role> getRole() throws Exception {
+		ArrayList<Role> roleList=authormapper.getRole();
+		return roleList;
 	}
 
 }

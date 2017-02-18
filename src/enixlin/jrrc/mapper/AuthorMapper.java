@@ -22,6 +22,9 @@ import enixlin.jrrc.pojo.Role;
 public interface AuthorMapper {
 	
 	public int AddRole(Role role) throws Exception;
+	public int DeleteRole(Role role) throws Exception;
+	public int ModifyRole(Role role) throws Exception;
+	public ArrayList<Role> getRole() throws Exception;
 	
 
 

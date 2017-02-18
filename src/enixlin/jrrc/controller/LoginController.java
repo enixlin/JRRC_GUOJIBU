@@ -2,8 +2,6 @@ package enixlin.jrrc.controller;
 
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -31,7 +29,7 @@ import enixlin.jrrc.service.UserService;
 public class LoginController {
 
 	@Autowired
-	private UserService userService;
+	private UserService uService;
 
 	/**
 	 * 
@@ -57,14 +55,14 @@ public class LoginController {
 		user.setName(name);
 		user.setPassword(password);
 		userCustomVo.setUser(user);
-		boolean isExist = userService.valitUser(userCustomVo);
+		boolean isExist = uService.valitUser(userCustomVo);
 		
 		if(isExist==true){
 			ArrayList<User> list=new ArrayList<>();
 			list.add(user);
 			UserCustomVo ucv=new UserCustomVo();
 			ucv.setUserList(list);
-			ArrayList<User> userList=userService.getUserByName(ucv);
+			ArrayList<User> userList=uService.getUserByName(ucv);
 			modelMap.addAttribute("UserName", userList.get(0).getName());
 			int id=userList.get(0).getId();
 			System.out.println(id);

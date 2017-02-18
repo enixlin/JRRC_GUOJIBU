@@ -21,7 +21,6 @@ import enixlin.jrrc.service.UserService;
 @Service
 public class UserServiceImpl implements UserService {
 
-
 	@Autowired
 	private UserMapper userMapper;
 

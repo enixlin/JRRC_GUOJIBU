@@ -22,8 +22,9 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@Autowired
-	private PowerServiceImpl powerServiceImpl;
+
+	
+
 	
 
 
@@ -76,14 +77,7 @@ public class UserController {
 	
 	
 	
-	@RequestMapping("getPowers.do")
-	public @ResponseBody ArrayList<Power> getUserPowers() throws Exception{
-		User user =new User();
-		user.setId(95);
-		ArrayList<Power> powerlist=powerServiceImpl.getPowers(user);
-		return powerlist; 
-		
-	}
+
 	
 	
 

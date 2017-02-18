@@ -2,6 +2,8 @@ package enixlin.jrrc.service;
 
 import java.util.ArrayList;
 
+import org.springframework.stereotype.Service;
+
 import enixlin.jrrc.pojo.User;
 import enixlin.jrrc.pojo.UserCustomVo;
 

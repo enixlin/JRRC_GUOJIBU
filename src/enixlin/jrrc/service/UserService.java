@@ -23,6 +23,7 @@ public interface UserService {
 	public User getUser(UserQueryVo userQueryVo) throws Exception;
 	public boolean validUser(UserQueryVo userQueryVo) throws Exception;
 	
+	
 	//批量操作函数
 	public int addUsers(UserQueryVo userQueryVo) throws Exception;
 	public int deleteUsers(UserQueryVo userQueryVo) throws Exception;

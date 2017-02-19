@@ -2,6 +2,9 @@ package enixlin.jrrc.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -12,7 +15,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import enixlin.jrrc.pojo.User;
-import enixlin.jrrc.pojo.UserCustomVo;
+import enixlin.jrrc.pojo.UserQueryVo;
 import enixlin.jrrc.service.UserService;
 
 /**
@@ -30,6 +33,12 @@ public class LoginController {
 
 	@Autowired
 	private UserService uService;
+	
+	@Autowired  
+	private HttpSession session;  
+	  
+	@Autowired  
+	private HttpServletRequest request;  
 
 	/**
 	 * 
@@ -42,32 +51,33 @@ public class LoginController {
 	 * @throws
 	 */
 	@RequestMapping("/index.do")
-	public ModelAndView login() throws Exception {
+	public ModelAndView login() throws Exception {	
 		ModelAndView modelAndView = new ModelAndView();
+		if((User) session.getAttribute("authorUser")!=null){
+			modelAndView.setViewName("isLogined"); 
+		}else{
 		modelAndView.setViewName("login"); 
+		}
 		return modelAndView;
 	}
  
 	@RequestMapping("valid.do")
-	public @ResponseBody boolean validUser(@RequestParam String name, @RequestParam String password,ModelMap modelMap) throws Exception {
-		UserCustomVo userCustomVo = new UserCustomVo();
+	public @ResponseBody boolean validUser(@RequestParam int id, @RequestParam String password,ModelMap modelMap) throws Exception {
+		UserQueryVo userQueryVo = new UserQueryVo();
 		User user = new User();
-		user.setName(name);
+		user.setId(id);
 		user.setPassword(password);
-		userCustomVo.setUser(user);
-		boolean isExist = uService.valitUser(userCustomVo);
+		userQueryVo.setUser(user);
+		boolean isExist = uService.validUser(userQueryVo);
 		
-		if(isExist==true){
-			ArrayList<User> list=new ArrayList<>();
-			list.add(user);
-			UserCustomVo ucv=new UserCustomVo();
-			ucv.setUserList(list);
-			ArrayList<User> userList=uService.getUserByName(ucv);
-			modelMap.addAttribute("UserName", userList.get(0).getName());
-			int id=userList.get(0).getId();
-			System.out.println(id);
-			
-			modelMap.addAttribute("UserID",String.valueOf(id) );
+		if(isExist==true){	
+			UserQueryVo ucv=new UserQueryVo();
+			ucv.setUser(user);
+			User authorUser=uService.getUser(userQueryVo);
+//			modelMap.addAttribute("UserName",authorUser.getName());
+//			int user_id=authorUser.getId();		
+//			modelMap.addAttribute("UserID",String.valueOf(user_id) );
+			session.setAttribute("authorUser", authorUser);
 		}
 		
 		return isExist;
@@ -83,6 +93,13 @@ public class LoginController {
 	@RequestMapping("HandleAddUser.do")
 	public String HandleAddUser(User user) throws Exception {
 		return "AddUser";
+	}
+	
+	
+	@RequestMapping("/logout.do")
+	public String logout(){
+		session.setAttribute("authorUser", null);
+		return "logout";
 	}
 
 }

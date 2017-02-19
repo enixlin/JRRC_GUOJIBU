@@ -4,6 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!--  引入extjs库-->
 <link rel="stylesheet" type="text/css"
@@ -25,16 +26,16 @@
 </style>
 </head>
 <body>
-${UserID} ${UserName}
+
 	<div id="container"></div>
 	<div id="add"></div>
 
 </body>
 </html>
-
 <script>
-
-
-
+//将用户信息session写入变量供extjs使用
+var userId=${UserID};
+var userName='${UserName}';
 </script>
+
 

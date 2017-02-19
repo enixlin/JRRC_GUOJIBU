@@ -81,13 +81,24 @@ public class UserController {
 	public @ResponseBody boolean validUser(@RequestParam int id,@RequestParam String password) throws Exception{
 		UserQueryVo userQueryVo=new UserQueryVo();
 		User user=new User();
-	
 		user.setId(id);;
 		user.setPassword(password);
 		userQueryVo.setUser(user);
 		boolean result=userService.validUser(userQueryVo);
-		
 		return result;
+	}
+	
+	
+	@RequestMapping("/getNames.do")
+	public @ResponseBody ArrayList<User> getUsers() throws Exception{
+		UserQueryVo userQueryVo =new UserQueryVo();
+		User user1 =new User();
+		userQueryVo.setUser(user1);
+		ArrayList<User> userList=userService.getUsers(userQueryVo);	
+		for (User user : userList) {
+			user.setPassword("");
+		}
+		return userList;
 	}
 
 }

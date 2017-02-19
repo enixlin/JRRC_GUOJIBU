@@ -26,10 +26,10 @@ Ext.onReady(function() {
 		items : [{
 					xtype : 'combobox',
 					fieldLabel : '用户名',
-					name : 'name',
+					name : 'id',
 					allowBlank : false,
 					displayField : 'name',
-					// model:user,
+					valueField: 'id',
 					store : states
 				}, {
 					xtype : 'textfield',

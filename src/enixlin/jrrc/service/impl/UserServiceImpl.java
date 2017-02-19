@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 import enixlin.jrrc.mapper.UserMapper;
 import enixlin.jrrc.pojo.User;
@@ -30,17 +31,22 @@ public class UserServiceImpl implements UserService {
 	public boolean validUser(UserQueryVo userQueryVo) throws Exception {
 		//取得所有的用户
 		ArrayList userlist=userMapper.getUsers(userQueryVo);
+		ModelAndView modelAndView=new ModelAndView();
 		boolean exist_flag=false;
-		int UserId=userQueryVo.getUser().getId();
+		User user1=userQueryVo.getUser();
+		int UserId=user1.getId();
 		String Password=userQueryVo.getUser().getPassword();
 		for(int n=0;n<userlist.size();n++){
 			User user=(User) userlist.get(n);
 			if(UserId==user.getId() && Password.equals(user.getPassword())){
 				exist_flag=true;
+				modelAndView.addObject("authorUser", user);
 			}
 		}
 		return exist_flag?true:false;
 	}
+
+
 
 
 	@Override
@@ -66,8 +72,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User getUser(UserQueryVo userQueryVo) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		User user=userMapper.getUser(userQueryVo);
+		return user;
 	}
 
 
@@ -94,8 +100,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public ArrayList<User> getUsers(UserQueryVo userQueryVo) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<User> userList=userMapper.getUsers(userQueryVo);
+		return userList;
 	}
 
 

@@ -30,5 +30,7 @@ public interface RoleService {
 	public ArrayList<Role> getAllRole()throws Exception;
 	
 	
+	private int a;
+	
 
 }

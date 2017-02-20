@@ -23,7 +23,7 @@
 			</environment>
 		</environments>
 
-
+ 
 		<mappers>
 			<!-- 加载  mappers包下所有的映射器-->
 			<package name="mapper"/>

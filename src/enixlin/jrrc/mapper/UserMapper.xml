@@ -85,20 +85,5 @@
 	</select>
 
 
-	<!-- <sql id="where_select_byId"> <if test="userList!=null"> <foreach collection="userList" 
-		item="list" separator=" or "> id=#{list.id} </foreach> </if> </sql> <sql 
-		id="where_select_byName"> <if test="userList!=null"> <foreach collection="userList" 
-		item="list" separator=" or "> name like "%${list.name}%" </foreach> </if> 
-		</sql> 按用户编号取得用户信息 可以提供多个编号 <select id="getUserById" parameterType="UserCustomVo" 
-		resultType="User"> select * from jrrc_user <where > <include refid="where_select_byId"></include> 
-		</where> </select> 按名字取用户信息，可以提供多个名字 <select id="getUserByName" parameterType="UserCustomVo" 
-		resultType="User"> select * from jrrc_user <where > <include refid="where_select_byName"></include> 
-		</where> </select> <update id="modifyUser" parameterType="UserCustomVo" > 
-		<foreach collection="UserList" item="user" index="index" open="" close="" 
-		separator=";" > update jrrc_user set name='${user.name}',password='${user.password}',status=${user.status} 
-		where id=${user.id} </foreach> </update> -->
-
-
-
 
 </mapper>

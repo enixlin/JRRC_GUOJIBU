@@ -10,11 +10,16 @@ package enixlin.jrrc.controller;
 
 import java.io.FileOutputStream;
 import java.net.InetAddress;
+import java.util.HashMap;
 
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import enixlin.jrrc.service.UpdateService;
  
 /**
 * @ClassName: UpdateController
@@ -25,6 +30,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 */
 @Controller
 public class UpdateController {
+	
+	@Autowired
+	private  UpdateService updateService;
+	
+	
+	@RequestMapping("getparams.do")
+	public @ResponseBody HashMap<String, String>  getparams() throws Exception {
+		HashMap<String, String> kv=updateService.getFtpParams();
+		return kv;
+		
+	}
+	
 
 	@RequestMapping("ftp.do")
 	public static void testDownload() { 
@@ -59,6 +76,8 @@ public class UpdateController {
             } 
         } 
     } 
+	
+	
 	
 	
 }

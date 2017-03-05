@@ -1,6 +1,7 @@
 package enixlin.jrrc.service;
 
 import java.io.File;
+import java.util.HashMap;
 
 /**
  * 
@@ -12,6 +13,7 @@ import java.io.File;
  */
 public interface UpdateService {
 	
+	public HashMap<String, String> getFtpParams() throws Exception;
 	public File[] getFilesFromFTP() throws Exception;
 
 }

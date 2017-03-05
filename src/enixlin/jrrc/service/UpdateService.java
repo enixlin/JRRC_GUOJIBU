@@ -1,13 +1,17 @@
 package enixlin.jrrc.service;
 
+import java.io.File;
+
 /**
-* 
+ * 
 * @ClassName: UpdateService
-* @Description:Êı¾İ¿â¸üĞÂ½Ó¿Ú
+* @Description: TODO(è¿™é‡Œç”¨ä¸€å¥è¯æè¿°è¿™ä¸ªç±»çš„ä½œç”¨)
 * @author linzhenhuan
-* @date 2017Äê3ÔÂ5ÈÕ
+* @date 2017å¹´3æœˆ5æ—¥
 *
-*/
+ */
 public interface UpdateService {
+	
+	public File[] getFilesFromFTP() throws Exception;
 
 }

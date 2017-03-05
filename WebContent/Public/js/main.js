@@ -143,8 +143,6 @@ Ext
 				items : [ functionPanel ]
 			}
 
-			
-
 			/**
 			 * 主界面框架
 			 */
@@ -191,7 +189,7 @@ Ext
 					height : 200,
 					modal : true,
 					items : [
-					// 表格布局					
+					// 表格布局
 					]
 
 				});
@@ -210,6 +208,6 @@ Ext
 
 			// 初始化功能树
 			function createFunctionTree() {
-
+				
 			}
 		});

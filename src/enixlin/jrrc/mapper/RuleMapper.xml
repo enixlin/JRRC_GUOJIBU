@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="enixlin.jrrc.mapper.RuleMapper">
+
+	<!-- 添加权限 -->
+	<insert id="AddRule" parameterType="Rule">
+		insert into jrrc_rule (url,function_name,pid,type,level,status,condition)
+		value(#{url},#{functionName},${pid},${type},${level},${status},#{condition})
+	</insert>
+
+	<!-- 删除权限 -->
+	<delete id="DeleteRule" parameterType="Rule">
+		delete from jrrc_rule
+		where id=${id}
+	</delete>
+
+	<!-- 查询所有权限 -->
+	<select id="getAllRule" resultType="Rule">
+		select * from jrrc_rule
+	</select>
+
+	<!-- 修改权限 -->
+	<update id="ModifyRule" parameterType="Rule">
+		update jrrc_rule set
+		url=#{url},function_name=#{functionName},pid=${pid},type=${type},level=${level},status=${status},condition=#{condition}
+		where id=${id}
+	</update>
+
+</mapper>

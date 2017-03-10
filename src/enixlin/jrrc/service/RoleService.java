@@ -20,7 +20,16 @@ import enixlin.jrrc.pojo.Role;
 *
 */
 public interface RoleService {
-	
+	/**
+	 * 
+	* @Title: AddRole
+	* @Description: 添加角色
+	* @param @param role
+	* @param @return
+	* @param @throws Exception    参数
+	* @return int    返回类型
+	* @throws
+	 */
 	public int AddRole(Role role) throws Exception;
 	
 	public int ModifyRole(Role role) throws Exception;

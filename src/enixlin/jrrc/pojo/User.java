@@ -11,6 +11,22 @@ public class User {
 	private String name;
 	private String password;
 	private int id;
+	
+	private String oa_password;
+	private String oa_name;
+	
+	public String getOa_password() {
+		return oa_password;
+	}
+	public void setOa_password(String oa_password) {
+		this.oa_password = oa_password;
+	}
+	public String getOa_name() {
+		return oa_name;
+	}
+	public void setOa_name(String oa_name) {
+		this.oa_name = oa_name;
+	}
 	public List<User> getUserList() {
 		return UserList;
 	}

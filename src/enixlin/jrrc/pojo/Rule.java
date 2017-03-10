@@ -12,12 +12,22 @@ public class Rule {
 
 	private int id;
 	private String url;
-	private String name;
+	private String functionName;
 	private int pid;
 	private int type;
 	private int level;
 	private int status;
 	private String condition;
+	
+
+	public String getFunctionName() {
+		return functionName;
+	}
+
+	public void setFunctionName(String functionName) {
+		this.functionName = functionName;
+	}
+
 
 	public int getId() {
 		return id;
@@ -33,14 +43,6 @@ public class Rule {
 
 	public void setUrl(String url) {
 		this.url = url;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public int getPid() {

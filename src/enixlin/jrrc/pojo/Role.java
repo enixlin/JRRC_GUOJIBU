@@ -18,7 +18,7 @@ package enixlin.jrrc.pojo;
 public class Role {
 
 	private String roleName;
-	private int Id;
+	private int id;
 	private int status;
 	
 	
@@ -29,10 +29,10 @@ public class Role {
 		this.roleName = roleName;
 	}
 	public int getId() {
-		return Id;
+		return id;
 	}
 	public void setId(int id) {
-		Id = id;
+		this.id = id;
 	}
 	public int getStatus() {
 		return status;

@@ -7,15 +7,11 @@
 
 	<sql id="select_where_sigle">
 		<if test="user!=null and user.id!=null  ">
-				id=${user.id}
+			id=${user.id}
 		</if>
-<!--		<if test="user!=null and user.name!=null ">
-				name=#{user.name}
-		</if>
-		<if test="user.id!=null and user.name!=null ">
-				name=#{user.name} and id=${user.id}
-		</if>
--->
+		<!-- <if test="user!=null and user.name!=null "> name=#{user.name} </if> 
+			<if test="user.id!=null and user.name!=null "> name=#{user.name} and id=${user.id} 
+			</if> -->
 	</sql>
 
 
@@ -74,8 +70,8 @@
 			<include refid="select_where"></include>
 		</where>
 	</select>
-	
-	
+
+
 	<!--取得单个用户 -->
 	<select id="getUser" parameterType="UserQueryVo" resultType="User">
 		select * from jrrc_user
@@ -84,6 +80,22 @@
 		</where>
 	</select>
 
+	<!--  批量修改用户信息-->
+	<update id="ModifyUser" parameterType="UserQueryVo">	
+		<if test="user!=null">			
+				update jrrc_user set
+				name=${user.name},password=${user.password},status=${user.status},oa_password=${user.oa_password},oa_name=${user.oa_name}
+				where id=${user.id}		
+		</if>	
+		<if test="userList!=null">
+			<foreach collection="userList" item="user" index="index"
+				open="" close="" separator=";">
+				update jrrc_user set
+				name=${user.name},password=${user.password},status=${user.status},oa_password=${user.oa_password},oa_name=${user.oa_name}
+				where id=${user.id}
+			</foreach>
+		</if>
+	</update>
 
 
 </mapper>

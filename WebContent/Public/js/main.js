@@ -173,7 +173,13 @@ Ext
 					else {
 						Container_contentWin.add({
 							title : record.data.text,
-							html : 'tab内容--',
+							html : openTabJsp(record.data.url),
+							loader: {
+					            url: '/JRRC_GUOJIBU/view/user/userlist.jsp',
+					            contentType: 'jsp',
+					            loadMask: true,
+					            loadOnRender: true
+					        },
 							closable : true,
 							id : record.data.id
 						});
@@ -209,5 +215,11 @@ Ext
 			// 初始化功能树
 			function createFunctionTree() {
 				
+			}
+			
+			//新打开功能窗口
+			function openTabJsp(url){
+				
+				return 
 			}
 		});

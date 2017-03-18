@@ -4,15 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
- <script type="text/javascript" src="../Public/js/user.js"></script>
-
-
+<script type="text/javascript" src="../Public/js/report.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
-this is userlist jsp
-
+<input type='button' value="show" onClick="show()" />
 </body>
 </html>
 

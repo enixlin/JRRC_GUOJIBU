@@ -68,5 +68,11 @@ public class MainController {
 		userService.getUsers(userQueryVo);
 		return "main";
 	}
+	
+	@RequestMapping("report.do")
+	public String show() throws Exception {
+
+		return "report/report";
+	}
 
 }

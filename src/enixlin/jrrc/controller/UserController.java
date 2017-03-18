@@ -100,5 +100,14 @@ public class UserController {
 		}
 		return userList;
 	}
+	 
+	@RequestMapping("/userlist.do")
+	public  String userlist() throws Exception{
+		UserQueryVo userQueryVo =new UserQueryVo();
+		
+		ArrayList<User> userList=userService.getUsers(userQueryVo);	
+	
+		return "user/userlist";
+	}
 
 }

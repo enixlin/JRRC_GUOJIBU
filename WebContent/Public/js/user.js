@@ -31,7 +31,8 @@ Ext.onReady(function(){
 	    ],	    
 	    height: 200,
 	    width: '100%',
-	    renderTo:Ext.getBody()
+	    //renderTo:Ext.fly("extModel31-5-innerCt")
+	    renderTo:Ext.fly(id)
 	});
-//	console.log(Container_contentWin);
+	console.log(id);
 });

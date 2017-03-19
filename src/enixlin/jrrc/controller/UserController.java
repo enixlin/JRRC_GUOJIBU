@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import enixlin.jrrc.pojo.User;
 import enixlin.jrrc.pojo.UserQueryVo;
@@ -102,12 +103,14 @@ public class UserController {
 	}
 	 
 	@RequestMapping("/userlist.do")
-	public  String userlist() throws Exception{
+	public  ModelAndView userlist(@RequestParam String id) throws Exception{
 		UserQueryVo userQueryVo =new UserQueryVo();
 		
 		ArrayList<User> userList=userService.getUsers(userQueryVo);	
-	
-		return "user/userlist";
+		ModelAndView modelAndView=new ModelAndView();
+		modelAndView.addObject("id",id);
+		modelAndView.setViewName( "user/userlist");
+		return modelAndView;
 	}
 
 }

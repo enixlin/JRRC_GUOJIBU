@@ -167,7 +167,7 @@ Ext.onReady(function() {
 	// 点击左则功能树，对应打开新的tab
 	function openTab(view, record, item, index, e, eOpts) {
 		if (record.data.leaf == true) { // 叶子节点才打开
-			alert(record.data.id);
+			//alert(record.data.id);
 			var id = record.id;
 			if (Ext.getCmp(id))// 如果已经打开了对应的tab就使该tab变成激活状态
 				Container_contentWin.setActiveTab(id);

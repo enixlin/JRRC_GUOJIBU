@@ -1,7 +1,8 @@
 Ext.onReady(function(){
+	var d=userId;
+	alert("user.js:"+d);
 	
-
-	Ext.define('User', {
+	Ext.define(d, {
 	     extend: 'Ext.data.Model',
 	     fields: [
 	         {name: 'id', type: 'string'},
@@ -12,7 +13,7 @@ Ext.onReady(function(){
 	 });
 
 	 var myStore = Ext.create('Ext.data.Store', {
-	     model: 'User',
+	     model: d,
 	     proxy: {
 	         type: 'ajax',
 	         url: '../user/getNames.do',
@@ -31,8 +32,7 @@ Ext.onReady(function(){
 	    ],	    
 	    height: 200,
 	    width: '100%',
-	    //renderTo:Ext.fly("extModel31-5-innerCt")
-	    renderTo:Ext.fly(id)
+	    renderTo:Ext.fly(d+"-innerCt")
 	});
-	console.log(id);
+
 });

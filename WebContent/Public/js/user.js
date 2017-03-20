@@ -1,5 +1,5 @@
 Ext.onReady(function(){
-	var d=userId;
+	var d=idd;
 	alert("user.js:"+d);
 	
 	Ext.define(d, {
